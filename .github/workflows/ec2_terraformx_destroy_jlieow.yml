@@ -15,7 +15,7 @@ jobs:
 
       - name: Perform Terraformx Destroy
         id: terraformx_destroy
-        uses: jlieow/terraformx_destroy@V1 # Uses an action in the repo terraformx_apply owned by jlieow tagged as V1
+        uses: jlieow/action_terraformx_destroy@V1 # Uses an action in the repo terraformx_apply owned by jlieow tagged as V1
         with:
           dir: ec2 # Remember to set the tag dir too
           aws_profiles: |
@@ -24,10 +24,5 @@ jobs:
                 "aws_access_key_id": ${{ toJSON(secrets.AWS_HUB_PROFILE_AWS_ACCESS_KEY_ID) }},
                 "aws_secret_access_key": ${{ toJSON(secrets.AWS_HUB_PROFILE_AWS_SECRET_ACCESS_KEY) }},
                 "profile_name": ${{ toJSON(secrets.AWS_HUB_PROFILE_NAME) }}
-              },
-              {
-                "aws_access_key_id": ${{ toJSON(secrets.AWS_SPOKE_PROFILE_AWS_ACCESS_KEY_ID) }},
-                "aws_secret_access_key": ${{ toJSON(secrets.AWS_SPOKE_PROFILE_AWS_SECRET_ACCESS_KEY) }},
-                "profile_name": ${{ toJSON(secrets.AWS_SPOKE_PROFILE_NAME) }}
               }
             ]

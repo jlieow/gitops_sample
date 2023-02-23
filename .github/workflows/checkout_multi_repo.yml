@@ -1,0 +1,35 @@
+name: Checkout multiple repos to perform Terraformx Apply action using Linux exe
+on:
+  push:
+    tags:
+      - 'hub_to_spoke/v*'
+
+jobs:
+  provision_resources:
+    runs-on: ubuntu-latest
+    name: Checkout multiple repos to perform Terraformx Apply
+    steps:
+
+      - name: Checkout aws_spoke
+        uses: actions/checkout@v3
+        with:
+          path: spoke
+
+      - name: Checkout aws_hub private repo
+        uses: actions/checkout@v3
+        with:
+          repository: jlieow/aws_hub
+          token: ${{ secrets.AWS_HUB_PAT }} 
+          path: hub
+        
+      - name: See dir structure
+        run: |
+                echo "ls $GITHUB_WORKSPACE: "
+                ls $GITHUB_WORKSPACE
+
+                echo "ls $GITHUB_WORKSPACE/hub: "
+                ls $GITHUB_WORKSPACE/hub
+
+                echo "ls $GITHUB_WORKSPACE/spoke: "
+                ls $GITHUB_WORKSPACE/spoke
+        shell: bash

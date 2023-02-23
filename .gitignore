@@ -1,0 +1,6 @@
+spoke.tfvars
+combine.tfvars
+settings.tfvars
+.terraform
+.terraform.lock.hcl
+*.csv
